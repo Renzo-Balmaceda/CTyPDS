@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Practica_1
 {
-    public abstract class Perfil : Comparable
+    public abstract class Perfil : Comparable //EJERCICIO 10
     {
         protected string Nombre;
         protected int id;
@@ -34,7 +34,7 @@ namespace Practica_1
             return id==p.getId();
         }
     }
-    public class Suscriptor : Perfil
+    public class Suscriptor : Perfil //EJERCICIO 11
     {
         private int mesesdeSuscripcion;
         private int HorasVistas;
@@ -47,6 +47,8 @@ namespace Practica_1
         }
         public int getHorasVistas() { return this.HorasVistas;}
         public int getMesesdeSuscripcion() { return this.mesesdeSuscripcion;}
+
+        //EJERCICIO 14
         public bool SosMenor(Comparable c)
         {
             Suscriptor p = (Suscriptor)c;
