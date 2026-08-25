@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
-namespace Practica_1
+namespace Practica_2
 {
-    public abstract class Perfil : Comparable //EJERCICIO 10
+    public abstract class Perfil : Comparable 
     {
         protected string Nombre;
         protected int id;
@@ -16,57 +17,60 @@ namespace Practica_1
             this.id = id;
         }
         public int getId() { return id; }
-        public string getNombre() {  return Nombre; }
+        public string getNombre() { return Nombre; }
 
         public virtual bool SosMenor(Comparable c)
         {
             Perfil p = (Perfil)c;
-            return id<p.getId();
+            return id < p.getId();
         }
-        public virtual bool SosMayor(Comparable c)
+        public  virtual bool SosMayor(Comparable c)
         {
             Perfil p = (Perfil)c;
-            return id>p.getId();
+            return id > p.getId();
         }
         public virtual bool SosIgual(Comparable c)
         {
             Perfil p = (Perfil)c;
-            return id==p.getId();
+            return id == p.getId();
         }
     }
-    public class Suscriptor : Perfil //EJERCICIO 11
+    public class Suscriptor : Perfil 
     {
+        private EstrategiadeComparacion estrategia;
         private int mesesdeSuscripcion;
         private int HorasVistas;
         public Suscriptor(string n, int i, int c, int h) : base(n, i)
         {
-            Nombre= n;
-            this.id = i;
             mesesdeSuscripcion = c;
             HorasVistas = h;
+            estrategia = new EstrategiaPorNombre(); //Estrategia por defecto
         }
-        public int getHorasVistas() { return this.HorasVistas;}
-        public int getMesesdeSuscripcion() { return this.mesesdeSuscripcion;}
+        public void CambiarEstrategia(EstrategiadeComparacion nuevaEstrategia)
+        {
+            estrategia=nuevaEstrategia;
+        }
+        public int getHorasVistas() { return this.HorasVistas; }
+        public int getMesesdeSuscripcion() { return this.mesesdeSuscripcion; }
 
-        //EJERCICIO 14
         public override bool SosMenor(Comparable c)
         {
             Suscriptor p = (Suscriptor)c;
-            return this.mesesdeSuscripcion < p.getMesesdeSuscripcion();
+            return estrategia.SosMenor(this, p);
         }
         public override bool SosIgual(Comparable c)
         {
             Suscriptor p = (Suscriptor)c;
-            return this.mesesdeSuscripcion== p.getMesesdeSuscripcion();
+            return estrategia.SosIgual(this, p);
         }
         public override bool SosMayor(Comparable c)
         {
-            Suscriptor p= (Suscriptor)c;
-            return this.mesesdeSuscripcion>p.getMesesdeSuscripcion();
+            Suscriptor p = (Suscriptor)c;
+            return estrategia.SosMayor(this, p);
         }
         public override string ToString()
         {
-            return id.ToString();
+            return $"Suscriptor: {Nombre} | ID: {id} | Meses: {mesesdeSuscripcion} | Horas vistas: {HorasVistas}";
         }
     }
 

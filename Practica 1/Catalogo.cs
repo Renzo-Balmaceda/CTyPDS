@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Practica_1
 {
+    //EJERCICIO 8
     public class Catalogo : Coleccionable
     {
         private Pila pila;

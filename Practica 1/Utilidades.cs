@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace Practica_1
 {
+    //Clase auxiliar
    public static class Utilidades
    { 
-        public static void LLenar(Coleccionable c)
+        public static void LLenar(Coleccionable c)//EJERCICIO 5
         {
             Random n = new Random();
             for (int i = 0; i < 20; i++)
@@ -19,7 +20,7 @@ namespace Practica_1
             }
         }
 
-        public static void Informar(Coleccionable c)
+        public static void Informar(Coleccionable c)//EJERCICIO 6
         {
             Console.WriteLine(c.Cuantos());
             Console.WriteLine(c.Minimo());
@@ -43,7 +44,7 @@ namespace Practica_1
             }
         }
 
-        public static void llenarSuscriptores(Coleccionable c)
+        public static void llenarSuscriptores(Coleccionable c) //EJERCICIO 12
         {
             Random r1 = new Random();
             string[] nombres = { "Juan",
