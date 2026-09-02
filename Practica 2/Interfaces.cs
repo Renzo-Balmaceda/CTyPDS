@@ -32,4 +32,21 @@ namespace Practica_2
         public bool Fin();
         public Comparable Actual();
     }
+
+    public interface Observador
+    {
+        public void Actualizar(Observado o);
+    }
+    public interface Observado
+    {
+        public void AgregarObservador(Observador o);
+        public void QuitarObservador(Observador o);
+
+        public void Notificar();
+    }
+    public interface Mostrable
+    {
+        public string MostrarInfo();
+        public Suscriptor GetSuscriptor();
+    }
 }

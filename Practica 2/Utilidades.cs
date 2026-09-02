@@ -76,6 +76,40 @@ namespace Practica_2
                 iterador.Siguiente();
             }
         }
+
+        public static void LLenarFactory(Coleccionable c, int opcion)
+        {
+            for (int i = 0; i < 20; i++)
+            {
+                Comparable comparable = FabricaDeComparables.CrearAleatorio(opcion);
+                c.Agregar(comparable);
+            }
+        }
+        
+        public static void InformarFactory(Coleccionable c, int opcion)
+        {
+            Console.WriteLine(c.Cuantos());
+            Console.WriteLine(c.Minimo());
+            Console.WriteLine(c.Maximo());
+            Comparable  comp= FabricaDeComparables.CrearPorTeclado(opcion);
+            if (c.Contiene(comp))
+            {
+                Console.WriteLine("El elemento leído está en la colección");
+            }
+            else
+            {
+                Console.WriteLine("El elemento leído NO está en la colección");
+            }
+        }
+
+        public static void TemporadaDeContenido(Canal canal)
+        {
+            for(int i = 0;i < 5; i++)
+            {
+                canal.PublicarContenido();
+                canal.IniciarEnVivo();
+            }
+        }
     }
 
 }

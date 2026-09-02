@@ -35,7 +35,7 @@ namespace Practica_2
             return id == p.getId();
         }
     }
-    public class Suscriptor : Perfil 
+    public class Suscriptor : Perfil, Observador, Mostrable
     {
         private EstrategiadeComparacion estrategia;
         private int mesesdeSuscripcion;
@@ -71,6 +71,41 @@ namespace Practica_2
         public override string ToString()
         {
             return $"Suscriptor: {Nombre} | ID: {id} | Meses: {mesesdeSuscripcion} | Horas vistas: {HorasVistas}";
+        }
+
+        public void  VerContenido()
+        {
+            Console.WriteLine("Viendo el contenido");
+        }
+        public void ReaccionarNotificacion()
+        {
+            string[] frase = ["Abriendo la notificación", 
+                              "Lo veo después",
+                              "Silenciando notificaciones"];
+            Random rnd = new Random();
+            string frase_elegida = frase[rnd.Next(frase.Length)];
+            Console.WriteLine(frase_elegida);
+        }
+
+        public void Actualizar(Observado o)
+        {
+            Canal canal = (Canal)o;
+            if(canal.GetUltimoEvento() == "video")
+            {
+                VerContenido();
+            }else if(canal.GetUltimoEvento()== "vivo")
+            {
+                ReaccionarNotificacion();
+            }
+        }
+        public string MostrarInfo()
+        {
+            return $"{Nombre} - {HorasVistas} horas vistas";
+        }
+
+        public Suscriptor GetSuscriptor()
+        {
+            return this;
         }
     }
 
